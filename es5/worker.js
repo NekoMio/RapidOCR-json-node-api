@@ -16,8 +16,8 @@ var path_1 = require("path");
 var net_1 = require("net");
 var child_process_1 = require("child_process");
 var __default = {
-    path: 'PaddleOCR-json.exe',
-    args: [],
+    path: 'RapidOCR-json.exe',
+    args: ['--ensureAscii=1'],
     options: {
         argv0: undefined,
         stdio: 'pipe',
@@ -27,8 +27,6 @@ var __default = {
         windowsHide: true,
     },
     initTag: 'OCR init completed.',
-    socketTag: 'OCR socket mode.',
-    pipeTag: 'OCR anonymous pipe mode.',
     socketMatch: /^Socket init completed. (\d+\.\d+\.\d+\.\d+:\d+)/,
 };
 function cargs(obj) {
@@ -54,16 +52,12 @@ function cout(data) {
 var end = 'at' in String ? function (str) { return str.at(-1); } : function (str) { return str[str.length - 1]; };
 if (!worker_threads_1.isMainThread) {
     var _a = worker_threads_1.workerData, _b = _a.path, path = _b === void 0 ? __default.path : _b, _c = _a.args, args = _c === void 0 ? [] : _c, options = _a.options, debug_1 = _a.debug;
-    var mode_1 = 0;
+    var mode_1 = 1;
     var proc_1 = (0, child_process_1.spawn)(path, args.concat(__default.args), __assign(__assign({}, options), __default.options));
     process.once('exit', proc_1.kill.bind(proc_1));
     proc_1.once('exit', process.exit);
     new Promise(function (res) { return proc_1.stdout.on('data', function stdout(chunk) {
         var data = chunk.toString();
-        if (!mode_1) {
-            data.match(__default.pipeTag) && (mode_1 = 1);
-            data.match(__default.socketTag) && (mode_1 = 2);
-        }
         if (!data.match(__default.initTag))
             return;
         proc_1.stdout.off('data', stdout);

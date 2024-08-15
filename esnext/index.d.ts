@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 import { Worker } from 'worker_threads';
 declare class OCR extends Worker {
     pid: number;

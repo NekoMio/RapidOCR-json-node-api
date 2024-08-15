@@ -5,8 +5,8 @@ const path_1 = require("path");
 const net_1 = require("net");
 const child_process_1 = require("child_process");
 const __default = {
-    path: 'PaddleOCR-json.exe',
-    args: [],
+    path: 'RapidOCR-json.exe',
+    args: ['--ensureAscii=1'],
     options: {
         argv0: undefined,
         stdio: 'pipe',
@@ -16,8 +16,6 @@ const __default = {
         windowsHide: true,
     },
     initTag: 'OCR init completed.',
-    socketTag: 'OCR socket mode.',
-    pipeTag: 'OCR anonymous pipe mode.',
     socketMatch: /^Socket init completed. (\d+\.\d+\.\d+\.\d+:\d+)/,
 };
 function cargs(obj) {

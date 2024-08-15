@@ -1,6 +1,6 @@
 {
     "name": "rapidocrjson",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "基于 https://github.com/hiroi-sora/RapidOCR-json 的node.js api",
     "homepage": "https://github.com/PunchlY/PaddleOCR-json-node-api/blob/main/api/node.js",
     "repository": {
@@ -14,7 +14,8 @@
     "license": "WTFPL",
     "main": "./esnext",
     "devDependencies": {
-        "@types/node": "^18.11.9"
+        "@types/node": "^18.11.9",
+        "typescript": "^5.5.4"
     },
     "keywords": [
         "OCR",
